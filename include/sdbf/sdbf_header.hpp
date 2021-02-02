@@ -1,26 +1,16 @@
 #pragma once
-#include <cstddef>
-
-
-/*
-header begin
-header end
-identifier
-section begin
-_section_size
-section end
-identifer
-*/
 
 namespace sdbf {
 
 	struct sdbf_header {
-		unsigned int _sections; // # of sections, to load into memory
-		unsigned int _section_size; // eg: 512 bytes
-		unsigned int _section_identifier_size; // eg: size of a identifier
-		unsigned int _sections_max;
+		unsigned int identifierSize;
+		unsigned int sectionSize;
+		bool valid;
+		char buf[3] = { 0,0,0 }; // for padding purposes, keeps the first 12 bytes handled by the header. Use these for whatever ig
+		sdbf_header(unsigned int is = 0, unsigned int ss = 0, bool v = true) : valid(v), sectionSize(ss), identifierSize(is) {}
+		
 	};
+	sdbf_header mask{ 0, 0, false };
 
-	const std::size_t sdbf_header_size = sizeof(sdbf_header);
+	constexpr unsigned int headerSize = sizeof(sdbf_header);
 }
-

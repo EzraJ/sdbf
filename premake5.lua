@@ -18,9 +18,9 @@ project "sdbf"
 		optimize "On"
 
 	filter "system:windows"
-		defines {"RSSFD_WINDOWS"}
+		defines {"SDBF_WINDOWS"}
 		buildoptions "/std:c++latest"
 
 	filter "system:linux"
-		defines {"RSSFD_LINUX"}
+		defines {"SDBF_LINUX"}
 		buildoptions "--std=c++20"
